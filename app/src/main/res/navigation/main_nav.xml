@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/expenseViewFragment">
+
+    <fragment
+        android:id="@+id/expenseViewFragment"
+        android:name="com.redcat.expensemonitor.ui.fragments.daily.ExpenseViewFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_expense_view">
+        <action
+            android:id="@+id/action_expenseViewFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <argument
+            android:name="expense_type"
+            android:defaultValue="all"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="month"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="year"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_expenseViewFragment_to_otherExpenseFragment"
+            app:destination="@id/otherExpenseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/expenseViewFragment" />
+        <action
+            android:id="@+id/action_expenseViewFragment_to_addUpdateExpenseBottomSheet"
+            app:destination="@id/addUpdateExpenseBottomSheet" />
+        <action
+            android:id="@+id/action_expenseViewFragment_to_itemListDialogFragment"
+            app:destination="@id/itemListDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/graphFragment"
+        android:name="com.redcat.expensemonitor.ui.bottomsheet.GraphFragment"
+        android:label="@string/graph_view"
+        tools:layout="@layout/fragment_graph">
+        <argument
+            android:name="expense_type"
+            android:defaultValue="all"
+            app:argType="string" />
+        <argument
+            android:name="cat"
+            app:argType="com.redcat.expensemonitor.model.ExpenseWithCatGroup[]" />
+    </dialog>
+    <dialog
+        android:id="@+id/addUpdateExpenseBottomSheet"
+        android:name="com.redcat.expensemonitor.ui.bottomsheet.AddUpdateExpenseBottomSheet"
+        android:label="AddUpdateExpenseBottomSheet">
+        <argument
+            android:name="expense"
+            app:argType="com.redcat.expensemonitor.model.Expense"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/otherExpenseFragment"
+        android:name="com.redcat.expensemonitor.ui.fragments.OtherExpenseFragment"
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/action_otherExpenseFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <argument
+            android:name="date"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="month"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="year"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_otherExpenseFragment_to_addUpdateExpenseBottomSheet"
+            app:destination="@id/addUpdateExpenseBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/itemListDialogFragment"
+        android:name="com.redcat.expensemonitor.ui.bottomsheet.ItemListDialogFragment"
+        android:label="year_selector"
+        tools:layout="@layout/year_selector">
+        <argument
+            android:name="type"
+            android:defaultValue="month"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_itemListDialogFragment_to_otherExpenseFragment"
+            app:destination="@id/otherExpenseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/expenseViewFragment" />
+    </dialog>
+</navigation>

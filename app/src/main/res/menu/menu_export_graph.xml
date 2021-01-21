@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_add"
+        android:contentDescription="@string/add"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="@string/add"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_export"
+        android:contentDescription="@string/export_to_excel"
+        android:icon="@drawable/ic_baseline_import_export_24"
+        android:title="@string/export_to_excel"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_showChart"
+        android:contentDescription="@string/show_charts"
+        android:icon="@drawable/ic_baseline_pie_chart_24"
+        android:title="@string/show_charts"
+        app:showAsAction="ifRoom" />
+</menu>

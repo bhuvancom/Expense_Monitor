@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Expense Monitor</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="export_to_excel">Export to excel</string>
+    <string name="show_graph">Show Graph</string>
+    <string name="enter_expense_title">Enter Expense Title</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_expense_amount">Enter Expense Amount</string>
+    <string name="graph_view">Graph View</string>
+    <string name="show_charts">Show Chart</string>
+    <string name="by_date">By Date</string>
+    <string name="by_month">By Month</string>
+    <string name="by_year">By Year</string>
+    <string name="select_date">Select Year</string>
+    <string name="select_month_year">Select month and year</string>
+    <string name="view">View</string>
+    <string name="category">Select Category</string>
+    <string name="defaultChannel">Expense Monitor default channel</string>
+    <string name="notificationDescription">Notification from Expense Monitor</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add to this date</string>
+</resources>

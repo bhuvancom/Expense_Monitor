@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_showByDate"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="@string/by_date"
+        android:contentDescription="@string/by_date"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_selectByMonth"
+        android:title="@string/by_month"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_selectByYear"
+        android:title="@string/by_year"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_export"
+        android:contentDescription="@string/export_to_excel"
+        android:icon="@drawable/ic_baseline_import_export_24"
+        android:title="@string/export_to_excel"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_showChart"
+        android:contentDescription="@string/show_charts"
+        android:icon="@drawable/ic_baseline_pie_chart_24"
+        android:title="@string/show_charts"
+        app:showAsAction="ifRoom" />
+</menu>
