@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Environment
 import android.view.View
 import android.widget.Toast
@@ -44,8 +45,18 @@ class UtilExtension {
             var isSuccess = false
             val fileNameExcel = fileName
             //Saving file in external storage
-            val sdCard = Environment.getExternalStorageDirectory()
-            val directory = File(sdCard.absolutePath + "/expense_monitor")
+            val mPath: String?
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD_MR1) {
+                mPath =
+                    context.getExternalFilesDir(
+                        Environment.DIRECTORY_DOWNLOADS +
+                                "/" + "expense_monitor"
+                    ).toString()
+            } else {
+                mPath = Environment.getExternalStorageDirectory().toString() +
+                        "/expense_monitor"
+            }
+            val directory = File(mPath)
             if (!directory.exists()) directory.mkdirs()
 
             val file = File(directory, fileNameExcel)
