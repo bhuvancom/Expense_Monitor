@@ -1,6 +1,7 @@
 name: Android CI to generate release build apk for internal testing
 on:
   push:
+    branches:
       - master
 jobs:
   release:
