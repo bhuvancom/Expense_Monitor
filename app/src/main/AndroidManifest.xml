@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseMonitor">
         <activity
+            android:exported="true"
             android:name=".ui.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:exported="true"
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait" />
     </application>
