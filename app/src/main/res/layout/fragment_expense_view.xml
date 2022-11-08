@@ -33,5 +33,6 @@
         android:contentDescription="@string/app_name"
         android:elevation="4dp"
         android:padding="16dp"
+        app:backgroundTint="@color/red"
         android:src="@drawable/ic_baseline_add_24" />
 </FrameLayout>

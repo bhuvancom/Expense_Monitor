@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="346dp"
             android:layout_marginTop="16dp"
-            android:text="@string/cancel"
+            android:text="x"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
