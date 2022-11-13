@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseMonitor">
         <activity
-            android:exported="true"
             android:name=".ui.SplashActivity"
-            android:screenOrientation="portrait">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ExpenseMonitor.Fs">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:exported="true"
             android:name=".ui.MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait" />
     </application>
 

@@ -36,7 +36,7 @@ class Constants {
         fun tillYear(): MutableList<Int> {
             val years = mutableListOf<Int>()
             val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-            for (i in 2021..(currentYear)) years.add(i)
+            for (i in 2022..(currentYear)) years.add(i)
             return years
         }
 

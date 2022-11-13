@@ -10,6 +10,5 @@
     <color name="dark_bg">#3E3030</color>
     <color name="red">#FF0000</color>
     <color name="green">#228C22</color>
-    <color name="txt_color">#000</color>
-    <color name="breaker">#6F6A6A</color>
+    <color name="txt_color">#FFF</color>
 </resources>
