@@ -47,7 +47,9 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
         val expenseDao = ExpenseMonitorDatabase.getDatabase(requireContext()).getExpenseDao()
         val vmProvider = VMFactory(expenseDao)
         vm = ViewModelProvider(this, vmProvider).get(MainViewModel::class.java)
-
+        binding.tvChart.setOnClickListener {
+            showCharts()
+        }
         val adapter = ExpensePagingAdapter(this)
 
         binding.fab.setOnClickListener {
@@ -76,9 +78,9 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
                 date, month, year
             ).collectLatest {
                 if (it != null) {
-                    binding.tvTotal.text = "Today's total is $it"
+                    binding.tvTotal.text = "Rs $it"
                 } else {
-                    binding.tvTotal.text = "Today's total is 0"
+                    binding.tvTotal.text = "Rs 0"
                 }
             }
         }
@@ -88,7 +90,7 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
 
     override fun onDestroyView() {
         super.onDestroyView()
-       // _binding = null
+        // _binding = null
     }
 
     override fun onItemClick(expense: Expense) {
@@ -159,24 +161,28 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
                 true
             }
             R.id.menu_showChart -> {
-                lifecycleScope.launch {
-                    val catDMY = vm.getCatDMY(date, month, year)
-                    if (catDMY.isEmpty()) {
-                        requireContext().showToast("Nothing to show chart")
-                    } else {
-                        findNavController().navigate(
-                            ExpenseViewFragmentDirections.actionExpenseViewFragmentToGraphFragment(
-                                "Expense Chart for Today",
-                                catDMY.toTypedArray()
-                            )
-                        )
-                    }
-                }
+                showCharts()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
 
+    }
+
+    private fun showCharts() {
+        lifecycleScope.launch {
+            val catDMY = vm.getCatDMY(date, month, year)
+            if (catDMY.isEmpty()) {
+                requireContext().showToast("Nothing to show in chart")
+            } else {
+                findNavController().navigate(
+                    ExpenseViewFragmentDirections.actionExpenseViewFragmentToGraphFragment(
+                        "Expense Chart for Today",
+                        catDMY.toTypedArray()
+                    )
+                )
+            }
+        }
     }
 
     private fun showDateChooser() {

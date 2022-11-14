@@ -42,7 +42,9 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentOtherBinding.bind(view)
         setHasOptionsMenu(true)
-
+        binding.tvChart.setOnClickListener {
+            showCharts()
+        }
         val dao = ExpenseMonitorDatabase.getDatabase(requireContext()).getExpenseDao()
         mainViewModel = ViewModelProvider(this, VMFactory(dao)).get(MainViewModel::class.java)
 
@@ -54,7 +56,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
         when {
             args.date != -1 -> {
                 //we have date, month, year wise view
-                (activity as MainActivity).updateSubtitle("${args.date}/${args.month}/${args.year}")
+                (activity as MainActivity).updateSubtitle("${args.date}-${args.month}-${args.year}")
                 lifecycleScope.launch {
                     mainViewModel.getExpenseOfDate(args.date, args.month, args.year)
                         .collectLatest { data ->
@@ -65,7 +67,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.totalForToday(args.date, args.month, args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "Total is $it"
+                            binding.tvTotal.text = "Rs $it"
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
@@ -74,9 +76,10 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                     }
                 }
             }
+
             args.month.isNotBlank() -> {
                 //we have month and year vise view
-                (activity as MainActivity).updateSubtitle("${args.month}/${args.year}")
+                (activity as MainActivity).updateSubtitle("${args.month}-${args.year}")
                 lifecycleScope.launch {
                     mainViewModel.getExpensesOfMonthYear(args.month, args.year)
                         .collectLatest { data ->
@@ -87,7 +90,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.getTotalOfGivenMonthAndYear(args.month, args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "Total of ${args.month} ${args.year} is  $it"
+                            binding.tvTotal.text = "${args.month} ${args.year} - Rs $it"
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
@@ -96,6 +99,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                     }
                 }
             }
+
             args.year != -1 -> {
                 //we have only year view
                 (activity as MainActivity).updateSubtitle("${args.year}")
@@ -109,7 +113,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.getTotalOfYear(args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "Total of year ${args.year} is  $it"
+                            binding.tvTotal.text = "${args.year} - Rs $it"
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
@@ -171,6 +175,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
         val month = args.month
         val year = args.year
         var catList: List<ExpenseWithCatGroup>? = null
+
         val launch = lifecycleScope.launch {
             catList = when {
                 date != -1 -> mainViewModel.getCatDMY(date, month, year)
@@ -179,17 +184,18 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 else -> mainViewModel.getCAT()
             }
         }
+
         launch.invokeOnCompletion {
             if (launch.isCompleted) {
                 catList?.let {
                     if (it.isEmpty()) {
-                        requireContext().showToast("No data to show charts")
+                        requireContext().showToast("No data to show in charts")
                         return@invokeOnCompletion
                     } else {
                         val sb = StringBuilder()
                         sb.append("Chart for ")
-                        if (date != -1) sb.append("$date/")
-                        if (month.isNotEmpty()) sb.append("$month/")
+                        if (date != -1) sb.append("$date-")
+                        if (month.isNotEmpty()) sb.append("$month-")
                         if (year != -1) sb.append("$year")
 
                         findNavController().navigate(

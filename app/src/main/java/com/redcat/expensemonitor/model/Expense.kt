@@ -13,7 +13,7 @@ data class Expense(
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,
     val title: String = "",
-    val amount: Double = 0.0,
+    val amount: Double = 0.00,
     val date: Int = 1,
     val month: String = "January",
     val year: Int = 2021,
