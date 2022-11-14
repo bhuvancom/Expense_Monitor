@@ -27,6 +27,9 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:padding="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_marginStart="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 tool:text="This is demo text" />
@@ -38,6 +41,7 @@
                 android:padding="2dp"
                 android:textColor="@color/green"
                 android:textStyle="bold"
+                android:textSize="12sp"
                 tool:text="on Shopping" />
 
             <TextView
@@ -46,6 +50,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:padding="2dp"
+                android:textSize="12sp"
                 tool:text="on Shopping" />
         </LinearLayout>
 
@@ -54,6 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            app:cardBackgroundColor="@color/gray"
             android:orientation="vertical">
 
             <TextView
@@ -61,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/red"
                 tool:text="Rs. 5000" />
