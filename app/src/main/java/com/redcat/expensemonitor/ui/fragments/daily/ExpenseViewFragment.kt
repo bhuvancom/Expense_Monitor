@@ -35,7 +35,7 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
     ExpenseViewAdapter.OnExpenseClickListener {
     private var _binding: FragmentExpenseViewBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm: MainViewModel
+    private lateinit var vm: MainViewModel
     private val date = Constants.getTodayDate()
     private val month = Constants.getCurrentMonth()
     private val year = Constants.getCurrentYear()
@@ -78,9 +78,9 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
                 date, month, year
             ).collectLatest {
                 if (it != null) {
-                    binding.tvTotal.text = "Rs $it"
+                    binding.tvTotal.text = getString(R.string.money,it.toString())
                 } else {
-                    binding.tvTotal.text = "Rs 0"
+                    binding.tvTotal.text = getString(R.string.money,"0")
                 }
             }
         }
@@ -190,7 +190,7 @@ class ExpenseViewFragment : Fragment(R.layout.fragment_expense_view),
         DatePickerDialog(
             requireContext(), { _, year, month, dayOfMonth ->
                 calendar.set(year, month, dayOfMonth)
-                requireContext().showToast("Showing expense of $dayOfMonth/${Constants.MONTHS[month]}/$year")
+                requireContext().showToast("Showing expense of $dayOfMonth-${Constants.MONTHS[month]}-$year")
                 findNavController().navigate(
                     ExpenseViewFragmentDirections.actionExpenseViewFragmentToOtherExpenseFragment(
                         dayOfMonth, Constants.MONTHS[month], year

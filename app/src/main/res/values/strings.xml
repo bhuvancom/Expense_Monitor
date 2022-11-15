@@ -22,5 +22,6 @@
     <string name="delete">Delete</string>
     <string name="add">Add to this date</string>
     <string name="total">Total</string>
+    <string name="money">₹ %s</string>
     <string name="show_charts_arrow"><![CDATA[View Chart >]]></string>
 </resources>

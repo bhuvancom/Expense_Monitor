@@ -17,8 +17,8 @@ class ExpensePagingAdapter(private val onExpenseClick: ExpenseViewAdapter.OnExpe
             binding.apply {
                 expense?.let {
                     tvTitle.text = expense.title
-                    tvCat.text = "On ${expense.category}"
-                    tvAmount.text = "\t Rs ${expense.amount}"
+                    tvCat.text = "${expense.category}"
+                    tvAmount.text = "₹ ${expense.amount}"
                     tvDate.text = "${expense.date}-${expense.month}-${expense.year}"
                     root.setOnClickListener {
                         onExpenseClick.onItemClick(expense)

@@ -34,7 +34,9 @@
                     android:layout_marginTop="8dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textSize="12sp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:text="@string/total" />
 
                 <TextView

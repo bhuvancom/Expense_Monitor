@@ -67,7 +67,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.totalForToday(args.date, args.month, args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "Rs $it"
+                            binding.tvTotal.text = getString(R.string.money,it.toString())
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
@@ -90,7 +90,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.getTotalOfGivenMonthAndYear(args.month, args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "${args.month} ${args.year} - Rs $it"
+                            binding.tvTotal.text = "${args.month} ${args.year} - ${getString(R.string.money,it.toString())}"
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
@@ -113,7 +113,7 @@ class OtherExpenseFragment : Fragment(R.layout.fragment_other),
                 lifecycleScope.launch {
                     mainViewModel.getTotalOfYear(args.year).collectLatest {
                         if (it != null) {
-                            binding.tvTotal.text = "${args.year} - Rs $it"
+                            binding.tvTotal.text = "${args.year} - ${getString(R.string.money,it.toString())}"
                             mainViewModel.updateHide(false)
                         } else {
                             binding.tvTotal.text = "Nothing found"
